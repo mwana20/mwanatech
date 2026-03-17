@@ -484,8 +484,12 @@
     }
 
     /* ── ANIMATE ON SCROLL ── */
-    .fade-in { opacity: 0; transform: translateY(24px); transition: opacity 0.6s ease, transform 0.6s ease; }
+    .fade-in { opacity: 0; transform: translateY(24px); transition: opacity 0.6s cubic-bezier(.77,0,.18,1), transform 0.6s cubic-bezier(.77,0,.18,1); }
     .fade-in.visible { opacity: 1; transform: translateY(0); }
+
+    /* Slide-in for hero texts */
+    .slide-in { opacity: 0; transform: translateY(40px); transition: opacity 0.8s cubic-bezier(.77,0,.18,1), transform 0.8s cubic-bezier(.77,0,.18,1); }
+    .slide-in.visible { opacity: 1; transform: translateY(0); }
 
     /* SERVICE PAGE DETAIL */
     .service-detail {
@@ -571,9 +575,9 @@
     <div class="hero-orb hero-orb-1"></div>
     <div class="hero-orb hero-orb-2"></div>
     <div class="hero-content">
-      <div class="hero-badge"><i class="fas fa-map-marker-alt"></i> Uganda's Growing Tech Hub</div>
-      <h1>Building the Web,<br><span>Powering Your Business.</span></h1>
-      <p>Mwanaweika Tech Solutions offers professional software development, ICT training, and graphic design services to empower individuals, schools, and businesses across Uganda.</p>
+      <div class="hero-badge slide-in"><i class="fas fa-map-marker-alt"></i> Uganda's Growing Tech Hub</div>
+      <h1 class="slide-in">Building the Web,<br><span>Powering Your Business.</span></h1>
+      <p class="slide-in">Mwanaweika Tech Solutions offers professional software development, ICT training, and graphic design services to empower individuals, schools, and businesses across Uganda.</p>
       <div class="hero-btns">
         <a class="btn-primary" href="#" onclick="showPage('services')"><i class="fas fa-rocket"></i> Explore Services</a>
         <a class="btn-outline" href="#" onclick="showPage('courses')"><i class="fas fa-graduation-cap"></i> Enroll in a Course</a>
@@ -864,7 +868,7 @@
     </div>
     <div class="footer-bottom">
       <p>© 2025 <span>Mwanaweika Tech Solutions</span>. All rights reserved. Made with ❤️ in Uganda.</p>
-      <p style="font-size:0.8rem;">+256 700 000 000 · info@mwanaweika.com</p>
+      <p style="font-size:0.8rem;">+256 705750506| +256 783354352 · mwanaweikatechsolutions@gmail.com</p>
     </div>
   </footer>
 
@@ -957,7 +961,7 @@
         <div class="team-card-top">
           <div class="team-card-badge">Founder & CEO</div>
           <div class="team-avatar">
-            <div class="team-avatar-placeholder"><i class="fas fa-user-tie"></i></div>
+            <img src="images/Phillip.jpeg" alt="Phillip Mubbala" style="width:100px;height:100px;border-radius:50%;object-fit:cover;" />
           </div>
         </div>
         <div class="team-card-body">
@@ -975,7 +979,7 @@
         <div class="team-card-top">
           <div class="team-card-badge">Design Lead</div>
           <div class="team-avatar">
-            <div class="team-avatar-placeholder"><i class="fas fa-user"></i></div>
+            <img src="images/Chris.png" alt="Bwambale Chris" style="width:100px;height:100px;border-radius:50%;object-fit:cover;" />
           </div>
         </div>
         <div class="team-card-body">
@@ -993,7 +997,7 @@
         <div class="team-card-top">
           <div class="team-card-badge">Trainer</div>
           <div class="team-avatar">
-            <div class="team-avatar-placeholder"><i class="fas fa-user"></i></div>
+            <img src="images/Oleper.jpeg" alt="Oleper Joseph" style="width:100px;height:100px;border-radius:50%;object-fit:cover;" />
           </div>
         </div>
         <div class="team-card-body">
@@ -1020,14 +1024,52 @@
   <footer>
     <div class="footer-top">
       <div class="footer-brand">
-        <div class="nav-logo"><div class="nav-logo-icon"><i class="fas fa-code"></i></div><div class="nav-logo-text">Mwanaweika<span>Tech Solutions</span></div></div>
+        <a class="nav-logo" href="#" style="display:inline-flex;">
+          <div class="nav-logo-icon"><img src="images/logo.png" alt="Mwanaweika Logo" style="width:40px;height:40px;border-radius:10px;object-fit:cover;" /></div>
+          <div class="nav-logo-text">Mwanaweika<span>Tech Solutions</span></div>
+        </a>
         <p>Building the Web, Powering Your Business. Uganda's trusted partner in software development, ICT training, and graphic design.</p>
+        <div style="display:flex;gap:10px;">
+          <a href="https://wa.me/256705750506" class="contact-social social-wa" target="_blank"><i class="fab fa-whatsapp"></i></a>
+          <a href="https://www.facebook.com/profile.php?id=61580688969059" class="contact-social social-fb" target="_blank"><i class="fab fa-facebook-f"></i></a>
+          <a href="https://www.tiktok.com/@phillipmwanaweika?_r=1&_t=ZS-94lZqGkTW8W" class="contact-social social-tiktok" target="_blank"><i class="fab fa-tiktok"></i></a>
+          <a href="https://x.com/Mwanaweika48002" class="contact-social social-x" target="_blank"><i class="fab fa-x-twitter"></i></a>
+        </div>
       </div>
-      <div class="footer-col"><h4>Company</h4><ul><li><a href="#" onclick="showPage('home')">Home</a></li><li><a href="#" onclick="showPage('about')">About</a></li><li><a href="#" onclick="showPage('services')">Services</a></li><li><a href="#" onclick="showPage('contact')">Contact</a></li></ul></div>
-      <div class="footer-col"><h4>Services</h4><ul><li><a href="#">Web Design</a></li><li><a href="#">Mobile Apps</a></li><li><a href="#">ICT Training</a></li><li><a href="#">Graphic Design</a></li></ul></div>
-      <div class="footer-col"><h4>Contact</h4><ul><li><a href="tel:+256700000000">+256 700 000 000</a></li><li><a href="mailto:info@mwanaweika.com">info@mwanaweika.com</a></li></ul></div>
+      <div class="footer-col">
+        <h4>Services</h4>
+        <ul>
+          <li><a href="#" onclick="showPage('services')">Software Development</a></li>
+          <li><a href="#" onclick="showPage('services')">Web Design</a></li>
+          <li><a href="#" onclick="showPage('services')">Mobile Apps</a></li>
+          <li><a href="#" onclick="showPage('services')">ICT Training</a></li>
+          <li><a href="#" onclick="showPage('services')">Graphic Design</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Courses</h4>
+        <ul>
+          <li><a href="#" onclick="showPage('courses')">Microsoft Office</a></li>
+          <li><a href="#" onclick="showPage('courses')">Frontend Development</a></li>
+          <li><a href="#" onclick="showPage('courses')">Backend Development</a></li>
+          <li><a href="#" onclick="showPage('courses')">Graphic Design</a></li>
+          <li><a href="#" onclick="showPage('courses')">Computer Basics</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Company</h4>
+        <ul>
+          <li><a href="#" onclick="showPage('about')">About Us</a></li>
+          <li><a href="#" onclick="showPage('portfolio')">Portfolio</a></li>
+          <li><a href="#" onclick="showPage('contact')">Contact</a></li>
+          <li><a href="#">Privacy Policy</a></li>
+        </ul>
+      </div>
     </div>
-    <div class="footer-bottom"><p>© 2025 <span>Mwanaweika Tech Solutions</span>. All rights reserved.</p></div>
+    <div class="footer-bottom">
+      <p>© 2025 <span>Mwanaweika Tech Solutions</span>. All rights reserved. Made with ❤️ in Uganda.</p>
+      <p style="font-size:0.8rem;">+256 705750506| +256 783354352 · mwanaweikatechsolutions@gmail.com</p>
+    </div>
   </footer>
 </div>
 
@@ -1125,12 +1167,53 @@
   </div>
   <footer>
     <div class="footer-top">
-      <div class="footer-brand"><div class="nav-logo"><div class="nav-logo-icon"><i class="fas fa-code"></i></div><div class="nav-logo-text">Mwanaweika<span>Tech Solutions</span></div></div><p>Building the Web, Powering Your Business.</p></div>
-      <div class="footer-col"><h4>Navigate</h4><ul><li><a href="#" onclick="showPage('home')">Home</a></li><li><a href="#" onclick="showPage('about')">About</a></li><li><a href="#" onclick="showPage('courses')">Courses</a></li><li><a href="#" onclick="showPage('contact')">Contact</a></li></ul></div>
-      <div class="footer-col"><h4>Contact</h4><ul><li><a href="tel:+256700000000">+256 700 000 000</a></li><li><a href="mailto:info@mwanaweika.com">info@mwanaweika.com</a></li></ul></div>
-      <div class="footer-col"><h4>Social</h4><ul><li><a href="#">Facebook</a></li><li><a href="#">TikTok</a></li><li><a href="#">WhatsApp</a></li></ul></div>
+      <div class="footer-brand">
+        <a class="nav-logo" href="#" style="display:inline-flex;">
+          <div class="nav-logo-icon"><img src="images/logo.png" alt="Mwanaweika Logo" style="width:40px;height:40px;border-radius:10px;object-fit:cover;" /></div>
+          <div class="nav-logo-text">Mwanaweika<span>Tech Solutions</span></div>
+        </a>
+        <p>Building the Web, Powering Your Business. Uganda's trusted partner in software development, ICT training, and graphic design.</p>
+        <div style="display:flex;gap:10px;">
+          <a href="https://wa.me/256705750506" class="contact-social social-wa" target="_blank"><i class="fab fa-whatsapp"></i></a>
+          <a href="https://www.facebook.com/profile.php?id=61580688969059" class="contact-social social-fb" target="_blank"><i class="fab fa-facebook-f"></i></a>
+          <a href="https://www.tiktok.com/@phillipmwanaweika?_r=1&_t=ZS-94lZqGkTW8W" class="contact-social social-tiktok" target="_blank"><i class="fab fa-tiktok"></i></a>
+          <a href="https://x.com/Mwanaweika48002" class="contact-social social-x" target="_blank"><i class="fab fa-x-twitter"></i></a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Services</h4>
+        <ul>
+          <li><a href="#" onclick="showPage('services')">Software Development</a></li>
+          <li><a href="#" onclick="showPage('services')">Web Design</a></li>
+          <li><a href="#" onclick="showPage('services')">Mobile Apps</a></li>
+          <li><a href="#" onclick="showPage('services')">ICT Training</a></li>
+          <li><a href="#" onclick="showPage('services')">Graphic Design</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Courses</h4>
+        <ul>
+          <li><a href="#" onclick="showPage('courses')">Microsoft Office</a></li>
+          <li><a href="#" onclick="showPage('courses')">Frontend Development</a></li>
+          <li><a href="#" onclick="showPage('courses')">Backend Development</a></li>
+          <li><a href="#" onclick="showPage('courses')">Graphic Design</a></li>
+          <li><a href="#" onclick="showPage('courses')">Computer Basics</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Company</h4>
+        <ul>
+          <li><a href="#" onclick="showPage('about')">About Us</a></li>
+          <li><a href="#" onclick="showPage('portfolio')">Portfolio</a></li>
+          <li><a href="#" onclick="showPage('contact')">Contact</a></li>
+          <li><a href="#">Privacy Policy</a></li>
+        </ul>
+      </div>
     </div>
-    <div class="footer-bottom"><p>© 2025 <span>Mwanaweika Tech Solutions</span>. All rights reserved.</p></div>
+    <div class="footer-bottom">
+      <p>© 2025 <span>Mwanaweika Tech Solutions</span>. All rights reserved. Made with ❤️ in Uganda.</p>
+      <p style="font-size:0.8rem;">+256 705750506| +256 783354352 · mwanaweikatechsolutions@gmail.com</p>
+    </div>
   </footer>
 </div>
 
@@ -1269,12 +1352,53 @@
   </section>
   <footer>
     <div class="footer-top">
-      <div class="footer-brand"><div class="nav-logo"><div class="nav-logo-icon"><i class="fas fa-code"></i></div><div class="nav-logo-text">Mwanaweika<span>Tech Solutions</span></div></div><p>Building the Web, Powering Your Business.</p></div>
-      <div class="footer-col"><h4>Navigate</h4><ul><li><a href="#" onclick="showPage('home')">Home</a></li><li><a href="#" onclick="showPage('about')">About</a></li><li><a href="#" onclick="showPage('services')">Services</a></li><li><a href="#" onclick="showPage('contact')">Contact</a></li></ul></div>
-      <div class="footer-col"><h4>Contact</h4><ul><li><a href="tel:+256700000000">+256 700 000 000</a></li><li><a href="mailto:info@mwanaweika.com">info@mwanaweika.com</a></li></ul></div>
-      <div class="footer-col"><h4>Socials</h4><ul><li><a href="#">Facebook</a></li><li><a href="#">TikTok</a></li><li><a href="#">WhatsApp</a></li></ul></div>
+      <div class="footer-brand">
+        <a class="nav-logo" href="#" style="display:inline-flex;">
+          <div class="nav-logo-icon"><img src="images/logo.png" alt="Mwanaweika Logo" style="width:40px;height:40px;border-radius:10px;object-fit:cover;" /></div>
+          <div class="nav-logo-text">Mwanaweika<span>Tech Solutions</span></div>
+        </a>
+        <p>Building the Web, Powering Your Business. Uganda's trusted partner in software development, ICT training, and graphic design.</p>
+        <div style="display:flex;gap:10px;">
+          <a href="https://wa.me/256705750506" class="contact-social social-wa" target="_blank"><i class="fab fa-whatsapp"></i></a>
+          <a href="https://www.facebook.com/profile.php?id=61580688969059" class="contact-social social-fb" target="_blank"><i class="fab fa-facebook-f"></i></a>
+          <a href="https://www.tiktok.com/@phillipmwanaweika?_r=1&_t=ZS-94lZqGkTW8W" class="contact-social social-tiktok" target="_blank"><i class="fab fa-tiktok"></i></a>
+          <a href="https://x.com/Mwanaweika48002" class="contact-social social-x" target="_blank"><i class="fab fa-x-twitter"></i></a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Services</h4>
+        <ul>
+          <li><a href="#" onclick="showPage('services')">Software Development</a></li>
+          <li><a href="#" onclick="showPage('services')">Web Design</a></li>
+          <li><a href="#" onclick="showPage('services')">Mobile Apps</a></li>
+          <li><a href="#" onclick="showPage('services')">ICT Training</a></li>
+          <li><a href="#" onclick="showPage('services')">Graphic Design</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Courses</h4>
+        <ul>
+          <li><a href="#" onclick="showPage('courses')">Microsoft Office</a></li>
+          <li><a href="#" onclick="showPage('courses')">Frontend Development</a></li>
+          <li><a href="#" onclick="showPage('courses')">Backend Development</a></li>
+          <li><a href="#" onclick="showPage('courses')">Graphic Design</a></li>
+          <li><a href="#" onclick="showPage('courses')">Computer Basics</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Company</h4>
+        <ul>
+          <li><a href="#" onclick="showPage('about')">About Us</a></li>
+          <li><a href="#" onclick="showPage('portfolio')">Portfolio</a></li>
+          <li><a href="#" onclick="showPage('contact')">Contact</a></li>
+          <li><a href="#">Privacy Policy</a></li>
+        </ul>
+      </div>
     </div>
-    <div class="footer-bottom"><p>© 2025 <span>Mwanaweika Tech Solutions</span>. All rights reserved.</p></div>
+    <div class="footer-bottom">
+      <p>© 2025 <span>Mwanaweika Tech Solutions</span>. All rights reserved. Made with ❤️ in Uganda.</p>
+      <p style="font-size:0.8rem;">+256 705750506| +256 783354352 · mwanaweikatechsolutions@gmail.com</p>
+    </div>
   </footer>
 </div>
 
@@ -1356,12 +1480,53 @@
 
   <footer>
     <div class="footer-top">
-      <div class="footer-brand"><div class="nav-logo"><div class="nav-logo-icon"><i class="fas fa-code"></i></div><div class="nav-logo-text">Mwanaweika<span>Tech Solutions</span></div></div><p>Building the Web, Powering Your Business.</p></div>
-      <div class="footer-col"><h4>Navigate</h4><ul><li><a href="#" onclick="showPage('home')">Home</a></li><li><a href="#" onclick="showPage('about')">About</a></li><li><a href="#" onclick="showPage('services')">Services</a></li><li><a href="#" onclick="showPage('contact')">Contact</a></li></ul></div>
-      <div class="footer-col"><h4>Contact</h4><ul><li><a href="tel:+256700000000">+256 700 000 000</a></li><li><a href="mailto:info@mwanaweika.com">info@mwanaweika.com</a></li></ul></div>
-      <div class="footer-col"><h4>Socials</h4><ul><li><a href="#">Facebook</a></li><li><a href="#">TikTok</a></li><li><a href="#">WhatsApp</a></li></ul></div>
+      <div class="footer-brand">
+        <a class="nav-logo" href="#" style="display:inline-flex;">
+          <div class="nav-logo-icon"><img src="images/logo.png" alt="Mwanaweika Logo" style="width:40px;height:40px;border-radius:10px;object-fit:cover;" /></div>
+          <div class="nav-logo-text">Mwanaweika<span>Tech Solutions</span></div>
+        </a>
+        <p>Building the Web, Powering Your Business. Uganda's trusted partner in software development, ICT training, and graphic design.</p>
+        <div style="display:flex;gap:10px;">
+          <a href="https://wa.me/256705750506" class="contact-social social-wa" target="_blank"><i class="fab fa-whatsapp"></i></a>
+          <a href="https://www.facebook.com/profile.php?id=61580688969059" class="contact-social social-fb" target="_blank"><i class="fab fa-facebook-f"></i></a>
+          <a href="https://www.tiktok.com/@phillipmwanaweika?_r=1&_t=ZS-94lZqGkTW8W" class="contact-social social-tiktok" target="_blank"><i class="fab fa-tiktok"></i></a>
+          <a href="https://x.com/Mwanaweika48002" class="contact-social social-x" target="_blank"><i class="fab fa-x-twitter"></i></a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Services</h4>
+        <ul>
+          <li><a href="#" onclick="showPage('services')">Software Development</a></li>
+          <li><a href="#" onclick="showPage('services')">Web Design</a></li>
+          <li><a href="#" onclick="showPage('services')">Mobile Apps</a></li>
+          <li><a href="#" onclick="showPage('services')">ICT Training</a></li>
+          <li><a href="#" onclick="showPage('services')">Graphic Design</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Courses</h4>
+        <ul>
+          <li><a href="#" onclick="showPage('courses')">Microsoft Office</a></li>
+          <li><a href="#" onclick="showPage('courses')">Frontend Development</a></li>
+          <li><a href="#" onclick="showPage('courses')">Backend Development</a></li>
+          <li><a href="#" onclick="showPage('courses')">Graphic Design</a></li>
+          <li><a href="#" onclick="showPage('courses')">Computer Basics</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Company</h4>
+        <ul>
+          <li><a href="#" onclick="showPage('about')">About Us</a></li>
+          <li><a href="#" onclick="showPage('portfolio')">Portfolio</a></li>
+          <li><a href="#" onclick="showPage('contact')">Contact</a></li>
+          <li><a href="#">Privacy Policy</a></li>
+        </ul>
+      </div>
     </div>
-    <div class="footer-bottom"><p>© 2025 <span>Mwanaweika Tech Solutions</span>. All rights reserved.</p></div>
+    <div class="footer-bottom">
+      <p>© 2025 <span>Mwanaweika Tech Solutions</span>. All rights reserved. Made with ❤️ in Uganda.</p>
+      <p style="font-size:0.8rem;">+256 705750506| +256 783354352 · mwanaweikatechsolutions@gmail.com</p>
+    </div>
   </footer>
 </div>
 
@@ -1441,20 +1606,52 @@
   <footer>
     <div class="footer-top">
       <div class="footer-brand">
-        <div class="nav-logo"><div class="nav-logo-icon"><i class="fas fa-code"></i></div><div class="nav-logo-text">Mwanaweika<span>Tech Solutions</span></div></div>
+        <a class="nav-logo" href="#" style="display:inline-flex;">
+          <div class="nav-logo-icon"><img src="images/logo.png" alt="Mwanaweika Logo" style="width:40px;height:40px;border-radius:10px;object-fit:cover;" /></div>
+          <div class="nav-logo-text">Mwanaweika<span>Tech Solutions</span></div>
+        </a>
         <p>Building the Web, Powering Your Business. Uganda's trusted partner in software development, ICT training, and graphic design.</p>
-        <div style="display:flex;gap:10px;margin-top:16px;">
-          <a href="https://wa.me/256700000000" class="contact-social social-wa"><i class="fab fa-whatsapp"></i></a>
-          <a href="#" class="contact-social social-fb"><i class="fab fa-facebook-f"></i></a>
-          <a href="#" class="contact-social social-tiktok"><i class="fab fa-tiktok"></i></a>
-          <a href="#" class="contact-social social-x"><i class="fab fa-x-twitter"></i></a>
+        <div style="display:flex;gap:10px;">
+          <a href="https://wa.me/256705750506" class="contact-social social-wa" target="_blank"><i class="fab fa-whatsapp"></i></a>
+          <a href="https://www.facebook.com/profile.php?id=61580688969059" class="contact-social social-fb" target="_blank"><i class="fab fa-facebook-f"></i></a>
+          <a href="https://www.tiktok.com/@phillipmwanaweika?_r=1&_t=ZS-94lZqGkTW8W" class="contact-social social-tiktok" target="_blank"><i class="fab fa-tiktok"></i></a>
+          <a href="https://x.com/Mwanaweika48002" class="contact-social social-x" target="_blank"><i class="fab fa-x-twitter"></i></a>
         </div>
       </div>
-      <div class="footer-col"><h4>Navigate</h4><ul><li><a href="#" onclick="showPage('home')">Home</a></li><li><a href="#" onclick="showPage('about')">About</a></li><li><a href="#" onclick="showPage('services')">Services</a></li><li><a href="#" onclick="showPage('courses')">Courses</a></li></ul></div>
-      <div class="footer-col"><h4>Services</h4><ul><li><a href="#">Web Design</a></li><li><a href="#">Mobile Apps</a></li><li><a href="#">ICT Training</a></li><li><a href="#">Graphic Design</a></li></ul></div>
-      <div class="footer-col"><h4>Contact</h4><ul><li><a href="tel:+256700000000">+256 700 000 000</a></li><li><a href="mailto:info@mwanaweika.com">info@mwanaweika.com</a></li><li><p style="color:rgba(255,255,255,0.55);font-size:0.87rem;">Kampala, Uganda</p></li></ul></div>
+      <div class="footer-col">
+        <h4>Services</h4>
+        <ul>
+          <li><a href="#" onclick="showPage('services')">Software Development</a></li>
+          <li><a href="#" onclick="showPage('services')">Web Design</a></li>
+          <li><a href="#" onclick="showPage('services')">Mobile Apps</a></li>
+          <li><a href="#" onclick="showPage('services')">ICT Training</a></li>
+          <li><a href="#" onclick="showPage('services')">Graphic Design</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Courses</h4>
+        <ul>
+          <li><a href="#" onclick="showPage('courses')">Microsoft Office</a></li>
+          <li><a href="#" onclick="showPage('courses')">Frontend Development</a></li>
+          <li><a href="#" onclick="showPage('courses')">Backend Development</a></li>
+          <li><a href="#" onclick="showPage('courses')">Graphic Design</a></li>
+          <li><a href="#" onclick="showPage('courses')">Computer Basics</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Company</h4>
+        <ul>
+          <li><a href="#" onclick="showPage('about')">About Us</a></li>
+          <li><a href="#" onclick="showPage('portfolio')">Portfolio</a></li>
+          <li><a href="#" onclick="showPage('contact')">Contact</a></li>
+          <li><a href="#">Privacy Policy</a></li>
+        </ul>
+      </div>
     </div>
-    <div class="footer-bottom"><p>© 2025 <span>Mwanaweika Tech Solutions</span>. All rights reserved. Made with ❤️ in Uganda.</p></div>
+    <div class="footer-bottom">
+      <p>© 2025 <span>Mwanaweika Tech Solutions</span>. All rights reserved. Made with ❤️ in Uganda.</p>
+      <p style="font-size:0.8rem;">+256 705750506| +256 783354352 · mwanaweikatechsolutions@gmail.com</p>
+    </div>
   </footer>
 </div>
 
@@ -1486,16 +1683,26 @@
 
   // SCROLL ANIMATIONS
   function observeElements() {
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+    const observer = new IntersectionObserver((entries, obs) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('visible');
+          obs.unobserve(e.target); // Stop observing once visible
+        }
+      });
     }, { threshold: 0.1 });
-    document.querySelectorAll('.fade-in').forEach(el => {
-      el.classList.remove('visible');
-      observer.observe(el);
+    document.querySelectorAll('.fade-in, .slide-in').forEach(el => {
+      if (!el.classList.contains('visible')) {
+        observer.observe(el);
+      }
     });
   }
   window.addEventListener('load', observeElements);
   window.addEventListener('scroll', observeElements);
+  window.addEventListener('DOMContentLoaded', () => {
+    observeElements();
+    setTimeout(observeElements, 100); // Run again after short delay
+  });
 </script>
 </body>
 </html>
