@@ -69,6 +69,12 @@
     /* ── PAGES ── */
     .page { display: none; padding-top: 70px; }
     .page.active { display: block; }
+    .img-fallback {
+      display: none; width: 100%; height: 100%; align-items: center; justify-content: center;
+      text-align: center; padding: 12px; font-family: var(--font-head); font-size: 0.95rem;
+      font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase; color: white;
+      background: linear-gradient(135deg, var(--blue), var(--cyan));
+    }
 
     /* ── HERO ── */
     .hero {
@@ -189,11 +195,13 @@
     }
     .service-card:hover { transform: translateY(-6px); box-shadow: 0 20px 48px rgba(29,78,216,0.14); }
     .service-card:hover::before { opacity: 1; }
-    .service-icon {
-      width: 58px; height: 58px; border-radius: 14px;
-      background: linear-gradient(135deg, rgba(29,78,216,0.1), rgba(6,182,212,0.1));
-      display: flex; align-items: center; justify-content: center;
-      font-size: 1.5rem; color: var(--blue); margin-bottom: 22px;
+    .service-media {
+      margin-bottom: 20px; border-radius: 16px; overflow: hidden;
+      border: 1px solid var(--gray-100); background: var(--gray-50);
+      aspect-ratio: 16 / 10;
+    }
+    .service-media img {
+      width: 100%; height: 100%; object-fit: cover; display: block;
     }
     .service-card h3 { font-family: var(--font-head); font-size: 1.2rem; font-weight: 700; color: var(--navy); margin-bottom: 10px; }
     .service-card p { font-size: 0.92rem; color: var(--gray-500); line-height: 1.75; }
@@ -301,7 +309,15 @@
       border-radius: 20px; padding: 30px; transition: background 0.25s, border-color 0.25s;
     }
     .course-card:hover { background: rgba(255,255,255,0.08); border-color: rgba(6,182,212,0.4); }
-    .course-icon { font-size: 2rem; margin-bottom: 16px; }
+    .course-media {
+      margin-bottom: 16px; border-radius: 16px; overflow: hidden;
+      border: 1px solid rgba(255,255,255,0.12);
+      background: rgba(255,255,255,0.06);
+      aspect-ratio: 16 / 10;
+    }
+    .course-media img {
+      width: 100%; height: 100%; object-fit: cover; display: block;
+    }
     .course-card h3 { font-family: var(--font-head); font-size: 1.1rem; font-weight: 700; color: white; margin-bottom: 10px; }
     .course-card p { font-size: 0.88rem; color: rgba(255,255,255,0.55); line-height: 1.75; margin-bottom: 16px; }
     .course-list { list-style: none; display: flex; flex-direction: column; gap: 6px; }
@@ -540,7 +556,6 @@
     <li><a href="#" onclick="showPage('about')" id="nav-about">About</a></li>
     <li><a href="#" onclick="showPage('services')" id="nav-services">Services</a></li>
     <li><a href="#" onclick="showPage('courses')" id="nav-courses">Courses</a></li>
-    <li><a href="#" onclick="showPage('portfolio')" id="nav-portfolio">Portfolio</a></li>
     <li><a href="#" onclick="showPage('contact')" id="nav-contact">Contact</a></li>
   </ul>
   <a class="nav-cta" href="#" onclick="showPage('contact')">Get Started</a>
@@ -555,7 +570,6 @@
   <a href="#" onclick="showPage('about');closeMobile()">About Us</a>
   <a href="#" onclick="showPage('services');closeMobile()">Services</a>
   <a href="#" onclick="showPage('courses');closeMobile()">Courses</a>
-  <a href="#" onclick="showPage('portfolio');closeMobile()">Portfolio</a>
   <a href="#" onclick="showPage('contact');closeMobile()">Contact</a>
 </div>
 
@@ -612,7 +626,9 @@
     </div>
     <div class="services-grid">
       <div class="service-card fade-in">
-        <div class="service-icon"><i class="fas fa-laptop-code"></i></div>
+        <div class="service-media">
+          <img src="https://pub-b2e691025f20417aaae7fc6f66f2ac7d.r2.dev/images/back.jfif" alt="Software development service image" loading="lazy" onerror="showImageFallback(this)" />
+        </div>
         <h3>Software Development</h3>
         <p>We design and develop beautiful, functional websites and applications for schools, hospitals, churches, and businesses of all sizes.</p>
         <div class="service-tags">
@@ -622,7 +638,9 @@
         </div>
       </div>
       <div class="service-card fade-in">
-        <div class="service-icon"><i class="fas fa-chalkboard-teacher"></i></div>
+        <div class="service-media">
+          <img src="https://pub-b2e691025f20417aaae7fc6f66f2ac7d.r2.dev/images/microsoft.jfif" alt="ICT training service image" loading="lazy" onerror="showImageFallback(this)" />
+        </div>
         <h3>ICT Training</h3>
         <p>Practical, beginner-friendly computer courses that equip students and professionals with in-demand digital skills for today's job market.</p>
         <div class="service-tags">
@@ -632,7 +650,9 @@
         </div>
       </div>
       <div class="service-card fade-in">
-        <div class="service-icon"><i class="fas fa-paint-brush"></i></div>
+        <div class="service-media">
+          <img src="https://pub-b2e691025f20417aaae7fc6f66f2ac7d.r2.dev/images/graphic.jfif" alt="Graphic design service image" loading="lazy" wq/>
+        </div>
         <h3>Graphic Design</h3>
         <p>Professional graphic design training and services including branding, logo design, poster creation, and social media visuals.</p>
         <div class="service-tags">
@@ -651,22 +671,9 @@
   <section class="about-strip">
     <div class="about-inner">
       <div class="about-visual fade-in">
-        <div class="about-visual-inner">
-          <div class="about-icon-row">
-            <div class="about-icon-box" style="display:flex;flex-direction:column;align-items:center;">
-              <img src="images/Phillip.jpeg" alt="Phillip Mubbala" style="width:70px;height:70px;border-radius:50%;object-fit:cover;border:4px solid #fff;" />
-              <span style="margin-top:6px;font-size:0.9rem;color:#fff;font-weight:600;">Phillip</span>
-            </div>
-            <div class="about-icon-box accent" style="display:flex;flex-direction:column;align-items:center;">
-              <img src="images/Chris.png" alt="Bwambale Chris" style="width:70px;height:70px;border-radius:50%;object-fit:cover;border:4px solid #fff;" />
-              <span style="margin-top:6px;font-size:0.9rem;color:#fff;font-weight:600;">Chris</span>
-            </div>
-            <div class="about-icon-box" style="display:flex;flex-direction:column;align-items:center;">
-              <img src="images/Oleper.jpeg" alt="Oleper Joseph" style="width:70px;height:70px;border-radius:50%;object-fit:cover;border:4px solid #fff;" />
-              <span style="margin-top:6px;font-size:0.9rem;color:#fff;font-weight:600;">Oleper</span>
-            </div>
-          </div>
-          <div class="about-label">Uganda's <span>Tech Partner</span></div>
+        <div class="about-visual-inner" style="display:flex;flex-direction:column;align-items:center;justify-content:center;">
+          <img src="images/logo.png" alt="Mwanaweika Tech Solutions logo" style="width:180px;height:180px;object-fit:contain;border-radius:24px;background:rgba(255,255,255,0.95);padding:18px;box-shadow:0 25px 60px rgba(0,0,0,0.18);" />
+          <div class="about-label" style="margin-top:18px;">Uganda's <span>Tech Partner</span></div>
           <div class="about-sub-label">Software · Training · Design</div>
           <div style="margin-top:16px; display:flex; gap:12px; flex-wrap:wrap; justify-content:center;">
             <div style="background:rgba(6,182,212,0.15);border:1px solid rgba(6,182,212,0.3);border-radius:50px;padding:6px 16px;color:var(--cyan);font-size:0.8rem;">✓ Affordable Pricing</div>
@@ -721,7 +728,7 @@
         <div class="team-card-top">
           <div class="team-card-badge">CEO</div>
           <div class="team-avatar">
-            <img src="images/Phillip.jpeg" alt="Phillip Mubbala" style="width:100px;height:100px;border-radius:50%;object-fit:cover;" />
+            <img src="https://pub-b2e691025f20417aaae7fc6f66f2ac7d.r2.dev/images/ph.jpeg?v=2" alt="Phillip Mubbala" style="width:100px;height:100px;border-radius:50%;object-fit:cover;" onerror="showImageFallback(this)" />
           </div>
         </div>
         <div class="team-card-body">
@@ -860,14 +867,13 @@
         <h4>Company</h4>
         <ul>
           <li><a href="#" onclick="showPage('about')">About Us</a></li>
-          <li><a href="#" onclick="showPage('portfolio')">Portfolio</a></li>
           <li><a href="#" onclick="showPage('contact')">Contact</a></li>
           <li><a href="#">Privacy Policy</a></li>
         </ul>
       </div>
     </div>
     <div class="footer-bottom">
-      <p>© 2025 <span>Mwanaweika Tech Solutions</span>. All rights reserved. Made with ❤️ in Uganda.</p>
+      <p>© 2025 <span>Mwanaweika Tech Solutions</span>. All rights reserved. </p>
       <p style="font-size:0.8rem;">+256 705750506| +256 783354352 · mwanaweikatechsolutions@gmail.com</p>
     </div>
   </footer>
@@ -931,12 +937,12 @@
     </div>
     <div class="mv-grid">
       <div class="mv-card mission">
-        <div class="mv-icon">🎯</div>
+        <div class="mv-icon"></div>
         <h3>Our Mission</h3>
         <p>To provide accessible, high-quality technology services and education that empower individuals, institutions, and businesses across Uganda to thrive in the digital economy.</p>
       </div>
       <div class="mv-card vision">
-        <div class="mv-icon">🌟</div>
+        <div class="mv-icon"></div>
         <h3>Our Vision</h3>
         <p>To be the leading technology company in East Africa, recognized for building innovative digital solutions and training the next generation of African tech professionals.</p>
       </div>
@@ -961,7 +967,7 @@
         <div class="team-card-top">
           <div class="team-card-badge">Founder & CEO</div>
           <div class="team-avatar">
-            <img src="images/Phillip.jpeg" alt="Phillip Mubbala" style="width:100px;height:100px;border-radius:50%;object-fit:cover;" />
+            <img src="https://pub-b2e691025f20417aaae7fc6f66f2ac7d.r2.dev/images/ph.jpeg" alt="Phillip Mubbala" style="width:100px;height:100px;border-radius:50%;object-fit:cover;" onerror="this.src='images/Phillip.jpeg'" />
           </div>
         </div>
         <div class="team-card-body">
@@ -1060,14 +1066,13 @@
         <h4>Company</h4>
         <ul>
           <li><a href="#" onclick="showPage('about')">About Us</a></li>
-          <li><a href="#" onclick="showPage('portfolio')">Portfolio</a></li>
           <li><a href="#" onclick="showPage('contact')">Contact</a></li>
           <li><a href="#">Privacy Policy</a></li>
         </ul>
       </div>
     </div>
     <div class="footer-bottom">
-      <p>© 2025 <span>Mwanaweika Tech Solutions</span>. All rights reserved. Made with ❤️ in Uganda.</p>
+      <p>© 2025 <span>Mwanaweika Tech Solutions</span>. All rights reserved. </p>
       <p style="font-size:0.8rem;">+256 705750506| +256 783354352 · mwanaweikatechsolutions@gmail.com</p>
     </div>
   </footer>
@@ -1088,10 +1093,8 @@
 
   <section>
     <div class="service-detail">
-      <div class="service-detail-visual fade-in" style="background:linear-gradient(135deg,#0a0f2e,#1d4ed8);">
-        <i class="fas fa-laptop-code"></i>
-        <h3>Software Development</h3>
-        <p>Professional, modern digital solutions</p>
+      <div class="service-detail-visual fade-in" style="background:linear-gradient(135deg,#0a0f2e,#1d4ed8);padding:0;overflow:hidden;">
+        <img src="https://pub-b2e691025f20417aaae7fc6f66f2ac7d.r2.dev/images/back.jfif" alt="Software Development" style="width:100%;height:82%;object-fit:cover;display:block;" onerror="showImageFallback(this)" />
       </div>
       <div class="service-detail-content">
         <h2>Software Development</h2>
@@ -1112,10 +1115,8 @@
     </div>
 
     <div class="service-detail reverse">
-      <div class="service-detail-visual fade-in" style="background:linear-gradient(135deg,#065f46,#059669);">
-        <i class="fas fa-chalkboard-teacher"></i>
-        <h3>ICT Training</h3>
-        <p>Practical skills for the digital age</p>
+      <div class="service-detail-visual fade-in" style="background:linear-gradient(135deg,#065f46,#059669);padding:0;overflow:hidden;">
+        <img src="https://pub-b2e691025f20417aaae7fc6f66f2ac7d.r2.dev/images/basic.jfif" alt="ICT Training" style="width:100%;height:82%;object-fit:cover;display:block;" onerror="showImageFallback(this)" />
       </div>
       <div class="service-detail-content">
         <h2>ICT Training & Computer Courses</h2>
@@ -1135,10 +1136,8 @@
     </div>
 
     <div class="service-detail">
-      <div class="service-detail-visual fade-in" style="background:linear-gradient(135deg,#7c3aed,#db2777);">
-        <i class="fas fa-paint-brush"></i>
-        <h3>Graphic Design</h3>
-        <p>Visual identity that leaves an impression</p>
+      <div class="service-detail-visual fade-in" style="background:linear-gradient(135deg,#7c3aed,#db2777);padding:0;overflow:hidden;">
+        <img src="https://pub-b2e691025f20417aaae7fc6f66f2ac7d.r2.dev/images/graphic.jfif" alt="Graphic Design" style="width:100%;height:82%;object-fit:cover;display:block;" onerror="showImageFallback(this)" />
       </div>
       <div class="service-detail-content">
         <h2>Graphic Design Training & Services</h2>
@@ -1204,14 +1203,13 @@
         <h4>Company</h4>
         <ul>
           <li><a href="#" onclick="showPage('about')">About Us</a></li>
-          <li><a href="#" onclick="showPage('portfolio')">Portfolio</a></li>
           <li><a href="#" onclick="showPage('contact')">Contact</a></li>
           <li><a href="#">Privacy Policy</a></li>
         </ul>
       </div>
     </div>
     <div class="footer-bottom">
-      <p>© 2025 <span>Mwanaweika Tech Solutions</span>. All rights reserved. Made with ❤️ in Uganda.</p>
+      <p>© 2025 <span>Mwanaweika Tech Solutions</span>. All rights reserved.</p>
       <p style="font-size:0.8rem;">+256 705750506| +256 783354352 · mwanaweikatechsolutions@gmail.com</p>
     </div>
   </footer>
@@ -1230,7 +1228,9 @@
     <div class="courses-grid">
       <!-- MS Office -->
       <div class="course-card fade-in">
-        <div class="course-icon">📊</div>
+        <div class="course-media">
+          <img src="https://pub-b2e691025f20417aaae7fc6f66f2ac7d.r2.dev/images/microsoft.jfif" alt="Microsoft Office Suite course image" onerror="showImageFallback(this)" />
+        </div>
         <h3>Microsoft Office Suite</h3>
         <p>Master the world's most widely used office software. Perfect for students, job seekers, and office workers who want to boost their productivity.</p>
         <ul class="course-list">
@@ -1245,7 +1245,9 @@
       </div>
       <!-- Computer Basics -->
       <div class="course-card fade-in">
-        <div class="course-icon">💻</div>
+        <div class="course-media">
+          <img src="https://pub-b2e691025f20417aaae7fc6f66f2ac7d.r2.dev/images/basic.jfif" alt="Computer Fundamentals course image" onerror="showImageFallback(this)" />
+        </div>
         <h3>Computer Fundamentals</h3>
         <p>New to computers? This course starts from scratch and takes you through everything you need to know to use a computer confidently every day.</p>
         <ul class="course-list">
@@ -1260,7 +1262,9 @@
       </div>
       <!-- Frontend -->
       <div class="course-card fade-in">
-        <div class="course-icon">🌐</div>
+        <div class="course-media">
+          <img src="https://pub-b2e691025f20417aaae7fc6f66f2ac7d.r2.dev/images/web.jfif" alt="Frontend Development course image" onerror="showImageFallback(this)" />
+        </div>
         <h3>Frontend Development</h3>
         <p>Learn to build beautiful websites from scratch. This course takes you from your first line of HTML all the way to building React web applications.</p>
         <ul class="course-list">
@@ -1275,7 +1279,9 @@
       </div>
       <!-- Backend -->
       <div class="course-card fade-in">
-        <div class="course-icon">⚙️</div>
+        <div class="course-media">
+          <img src="https://pub-b2e691025f20417aaae7fc6f66f2ac7d.r2.dev/images/back.jfif" alt="Backend Development course image" onerror="showImageFallback(this)" />
+        </div>
         <h3>Backend Development</h3>
         <p>Go beyond the front end. Learn how to build the logic, databases, and server-side code that powers modern web applications.</p>
         <ul class="course-list">
@@ -1290,7 +1296,9 @@
       </div>
       <!-- Photoshop -->
       <div class="course-card fade-in">
-        <div class="course-icon">🎨</div>
+        <div class="course-media">
+          <img src="https://pub-b2e691025f20417aaae7fc6f66f2ac7d.r2.dev/images/ps.jfif" alt="Adobe Photoshop course image" onerror="showImageFallback(this)" />
+        </div>
         <h3>Adobe Photoshop</h3>
         <p>Learn professional photo editing, digital art creation, and graphic design for social media, print, and digital marketing materials.</p>
         <ul class="course-list">
@@ -1305,7 +1313,9 @@
       </div>
       <!-- Illustrator & InDesign -->
       <div class="course-card fade-in">
-        <div class="course-icon">✏️</div>
+        <div class="course-media">
+          <img src="https://pub-b2e691025f20417aaae7fc6f66f2ac7d.r2.dev/images/illustrator.jfif" alt="Adobe Illustrator and InDesign course image" onerror="showImageFallback(this)" />
+        </div>
         <h3>Adobe Illustrator & InDesign</h3>
         <p>Create stunning vector graphics, logos, and professional print layouts. Essential tools for every serious graphic designer.</p>
         <ul class="course-list">
@@ -1321,26 +1331,26 @@
     </div>
 
     <div style="background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:24px;padding:40px;margin-top:56px;text-align:center;">
-      <h3 style="font-family:var(--font-head);font-size:1.5rem;color:white;margin-bottom:10px;">🎓 Why Study at Mwanaweika?</h3>
+      <h3 style="font-family:var(--font-head);font-size:1.5rem;color:white;margin-bottom:10px;">Why Study at Mwanaweika?</h3>
       <p style="color:rgba(255,255,255,0.6);margin-bottom:28px;">We don't just teach — we transform careers and lives through practical, industry-relevant training.</p>
       <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:20px;text-align:left;">
         <div style="background:rgba(255,255,255,0.06);border-radius:14px;padding:20px;">
-          <div style="font-size:1.5rem;margin-bottom:8px;">💡</div>
+          <div style="font-size:1.5rem;margin-bottom:8px;"></div>
           <h4 style="color:white;font-size:0.95rem;font-family:var(--font-head);margin-bottom:4px;">Practical Learning</h4>
           <p style="font-size:0.82rem;color:rgba(255,255,255,0.5);">Every session is hands-on with real projects.</p>
         </div>
         <div style="background:rgba(255,255,255,0.06);border-radius:14px;padding:20px;">
-          <div style="font-size:1.5rem;margin-bottom:8px;">👨‍🏫</div>
+          <div style="font-size:1.5rem;margin-bottom:8px;"></div>
           <h4 style="color:white;font-size:0.95rem;font-family:var(--font-head);margin-bottom:4px;">Expert Instructors</h4>
           <p style="font-size:0.82rem;color:rgba(255,255,255,0.5);">Learn from working professionals with real experience.</p>
         </div>
         <div style="background:rgba(255,255,255,0.06);border-radius:14px;padding:20px;">
-          <div style="font-size:1.5rem;margin-bottom:8px;">📜</div>
+          <div style="font-size:1.5rem;margin-bottom:8px;"></div>
           <h4 style="color:white;font-size:0.95rem;font-family:var(--font-head);margin-bottom:4px;">Certificates</h4>
           <p style="font-size:0.82rem;color:rgba(255,255,255,0.5);">Receive a recognised certificate upon completion.</p>
         </div>
         <div style="background:rgba(255,255,255,0.06);border-radius:14px;padding:20px;">
-          <div style="font-size:1.5rem;margin-bottom:8px;">💰</div>
+          <div style="font-size:1.5rem;margin-bottom:8px;"></div>
           <h4 style="color:white;font-size:0.95rem;font-family:var(--font-head);margin-bottom:4px;">Affordable Fees</h4>
           <p style="font-size:0.82rem;color:rgba(255,255,255,0.5);">Quality education at prices that don't break the bank.</p>
         </div>
@@ -1389,142 +1399,13 @@
         <h4>Company</h4>
         <ul>
           <li><a href="#" onclick="showPage('about')">About Us</a></li>
-          <li><a href="#" onclick="showPage('portfolio')">Portfolio</a></li>
           <li><a href="#" onclick="showPage('contact')">Contact</a></li>
           <li><a href="#">Privacy Policy</a></li>
         </ul>
       </div>
     </div>
     <div class="footer-bottom">
-      <p>© 2025 <span>Mwanaweika Tech Solutions</span>. All rights reserved. Made with ❤️ in Uganda.</p>
-      <p style="font-size:0.8rem;">+256 705750506| +256 783354352 · mwanaweikatechsolutions@gmail.com</p>
-    </div>
-  </footer>
-</div>
-
-<!-- ═══════════════════════════════════════════ -->
-<!-- PAGE: PORTFOLIO                             -->
-<!-- ═══════════════════════════════════════════ -->
-<div class="page" id="page-portfolio">
-  <section style="background:var(--gradient);padding:80px 5% 90px;position:relative;overflow:hidden;">
-    <div class="hero-bg-grid"></div>
-    <div style="position:relative;text-align:center;">
-      <div class="section-label" style="background:rgba(6,182,212,0.15);color:var(--cyan);">Our Work</div>
-      <h1 style="font-family:var(--font-head);font-size:clamp(2rem,4vw,3.2rem);font-weight:800;color:white;margin-top:10px;">Portfolio</h1>
-      <p style="color:rgba(255,255,255,0.65);max-width:520px;margin:14px auto 0;line-height:1.8;">A showcase of the websites, applications, and designs we've created for clients across Uganda.</p>
-    </div>
-  </section>
-
-  <section>
-    <div class="section-header center">
-      <div class="section-label">Websites</div>
-      <h2 class="section-title">Website <span>Projects</span></h2>
-    </div>
-    <div class="portfolio-grid">
-      <div class="portfolio-card">
-        <div class="portfolio-visual" style="background:linear-gradient(135deg,#1d4ed8,#06b6d4);">
-          <div class="portfolio-visual-icon">🏫</div>
-          <h4>School Management Website</h4>
-          <p>Responsive school portal with student info</p>
-        </div>
-        <div class="portfolio-overlay"><i class="fas fa-external-link-alt"></i><span>View Project</span></div>
-      </div>
-      <div class="portfolio-card">
-        <div class="portfolio-visual" style="background:linear-gradient(135deg,#065f46,#10b981);">
-          <div class="portfolio-visual-icon">🏥</div>
-          <h4>Hospital Website</h4>
-          <p>Modern clinic website with appointment system</p>
-        </div>
-        <div class="portfolio-overlay"><i class="fas fa-external-link-alt"></i><span>View Project</span></div>
-      </div>
-      <div class="portfolio-card">
-        <div class="portfolio-visual" style="background:linear-gradient(135deg,#7c3aed,#a855f7);">
-          <div class="portfolio-visual-icon">⛪</div>
-          <h4>Church & Ministry Website</h4>
-          <p>Elegant website for a growing church community</p>
-        </div>
-        <div class="portfolio-overlay"><i class="fas fa-external-link-alt"></i><span>View Project</span></div>
-      </div>
-      <div class="portfolio-card">
-        <div class="portfolio-visual" style="background:linear-gradient(135deg,#b45309,#f59e0b);">
-          <div class="portfolio-visual-icon">🛒</div>
-          <h4>Business E-Commerce Site</h4>
-          <p>Online store with product listings and payment</p>
-        </div>
-        <div class="portfolio-overlay"><i class="fas fa-external-link-alt"></i><span>View Project</span></div>
-      </div>
-      <div class="portfolio-card">
-        <div class="portfolio-visual" style="background:linear-gradient(135deg,#0ea5e9,#6366f1);">
-          <div class="portfolio-visual-icon">📱</div>
-          <h4>Mobile App UI</h4>
-          <p>Android app for business management</p>
-        </div>
-        <div class="portfolio-overlay"><i class="fas fa-external-link-alt"></i><span>View Project</span></div>
-      </div>
-      <div class="portfolio-card">
-        <div class="portfolio-visual" style="background:linear-gradient(135deg,#be185d,#f43f5e);">
-          <div class="portfolio-visual-icon">🎨</div>
-          <h4>Brand Identity Design</h4>
-          <p>Complete branding for a Ugandan startup</p>
-        </div>
-        <div class="portfolio-overlay"><i class="fas fa-external-link-alt"></i><span>View Project</span></div>
-      </div>
-    </div>
-
-    <div style="text-align:center;margin-top:50px;padding:40px;background:var(--gray-50);border-radius:24px;">
-      <h3 style="font-family:var(--font-head);color:var(--navy);font-size:1.4rem;margin-bottom:10px;">Have a Project in Mind?</h3>
-      <p style="color:var(--gray-500);margin-bottom:24px;">We'd love to add your project to this portfolio. Let's build something great together.</p>
-      <a class="btn-primary" href="#" onclick="showPage('contact')">Start a Project <i class="fas fa-arrow-right"></i></a>
-    </div>
-  </section>
-
-  <footer>
-    <div class="footer-top">
-      <div class="footer-brand">
-        <a class="nav-logo" href="#" style="display:inline-flex;">
-          <div class="nav-logo-icon"><img src="images/logo.png" alt="Mwanaweika Logo" style="width:40px;height:40px;border-radius:10px;object-fit:cover;" /></div>
-          <div class="nav-logo-text">Mwanaweika<span>Tech Solutions</span></div>
-        </a>
-        <p>Building the Web, Powering Your Business. Uganda's trusted partner in software development, ICT training, and graphic design.</p>
-        <div style="display:flex;gap:10px;">
-          <a href="https://wa.me/256705750506" class="contact-social social-wa" target="_blank"><i class="fab fa-whatsapp"></i></a>
-          <a href="https://www.facebook.com/profile.php?id=61580688969059" class="contact-social social-fb" target="_blank"><i class="fab fa-facebook-f"></i></a>
-          <a href="https://www.tiktok.com/@phillipmwanaweika?_r=1&_t=ZS-94lZqGkTW8W" class="contact-social social-tiktok" target="_blank"><i class="fab fa-tiktok"></i></a>
-          <a href="https://x.com/Mwanaweika48002" class="contact-social social-x" target="_blank"><i class="fab fa-x-twitter"></i></a>
-        </div>
-      </div>
-      <div class="footer-col">
-        <h4>Services</h4>
-        <ul>
-          <li><a href="#" onclick="showPage('services')">Software Development</a></li>
-          <li><a href="#" onclick="showPage('services')">Web Design</a></li>
-          <li><a href="#" onclick="showPage('services')">Mobile Apps</a></li>
-          <li><a href="#" onclick="showPage('services')">ICT Training</a></li>
-          <li><a href="#" onclick="showPage('services')">Graphic Design</a></li>
-        </ul>
-      </div>
-      <div class="footer-col">
-        <h4>Courses</h4>
-        <ul>
-          <li><a href="#" onclick="showPage('courses')">Microsoft Office</a></li>
-          <li><a href="#" onclick="showPage('courses')">Frontend Development</a></li>
-          <li><a href="#" onclick="showPage('courses')">Backend Development</a></li>
-          <li><a href="#" onclick="showPage('courses')">Graphic Design</a></li>
-          <li><a href="#" onclick="showPage('courses')">Computer Basics</a></li>
-        </ul>
-      </div>
-      <div class="footer-col">
-        <h4>Company</h4>
-        <ul>
-          <li><a href="#" onclick="showPage('about')">About Us</a></li>
-          <li><a href="#" onclick="showPage('portfolio')">Portfolio</a></li>
-          <li><a href="#" onclick="showPage('contact')">Contact</a></li>
-          <li><a href="#">Privacy Policy</a></li>
-        </ul>
-      </div>
-    </div>
-    <div class="footer-bottom">
-      <p>© 2025 <span>Mwanaweika Tech Solutions</span>. All rights reserved. Made with ❤️ in Uganda.</p>
+      <p>© 2025 <span>Mwanaweika Tech Solutions</span>. All rights reserved.</p>
       <p style="font-size:0.8rem;">+256 705750506| +256 783354352 · mwanaweikatechsolutions@gmail.com</p>
     </div>
   </footer>
@@ -1552,11 +1433,11 @@
 
         <div class="contact-info-item">
           <div class="contact-info-icon"><i class="fas fa-phone"></i></div>
-          <div><h4>Phone & WhatsApp</h4><a href="tel:+256700000000">+256 700 000 000</a></div>
+          <div><h4>Phone & WhatsApp</h4><a href="tel:+256705750506">+256 705750506</a></div>
         </div>
         <div class="contact-info-item">
           <div class="contact-info-icon"><i class="fas fa-envelope"></i></div>
-          <div><h4>Email</h4><a href="mailto:info@mwanaweika.com">info@mwanaweika.com</a></div>
+          <div><h4>Email</h4><a href="mailto:mwanaweikatechsolutions@gmail.com">mwanaweikatechsolutions@gmail.com</a></div>
         </div>
         <div class="contact-info-item">
           <div class="contact-info-icon"><i class="fas fa-map-marker-alt"></i></div>
@@ -1568,37 +1449,39 @@
         </div>
 
         <div class="contact-socials">
-          <a href="https://wa.me/256700000000" class="contact-social social-wa" target="_blank" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
-          <a href="#" class="contact-social social-fb" target="_blank" title="Facebook"><i class="fab fa-facebook-f"></i></a>
-          <a href="#" class="contact-social social-tiktok" target="_blank" title="TikTok"><i class="fab fa-tiktok"></i></a>
-          <a href="#" class="contact-social social-x" target="_blank" title="X (Twitter)"><i class="fab fa-x-twitter"></i></a>
+          <a href="https://wa.me/256705750506" class="contact-social social-wa" target="_blank" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+          <a href="https://www.facebook.com/profile.php?id=61580688969059" class="contact-social social-fb" target="_blank" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+          <a href="https://www.tiktok.com/@phillipmwanaweika?_r=1&_t=ZS-94lZqGkTW8W" class="contact-social social-tiktok" target="_blank" title="TikTok"><i class="fab fa-tiktok"></i></a>
+          <a href="https://x.com/Mwanaweika48002" class="contact-social social-x" target="_blank" title="X (Twitter)"><i class="fab fa-x-twitter"></i></a>
         </div>
       </div>
 
       <div class="contact-form fade-in">
         <h3 style="font-family:var(--font-head);font-size:1.3rem;font-weight:800;color:var(--navy);margin-bottom:24px;">Send Us a Message</h3>
-        <div class="form-row">
-          <div class="form-group"><label>First Name</label><input type="text" placeholder="e.g. Phillip" /></div>
-          <div class="form-group"><label>Last Name</label><input type="text" placeholder="e.g. Mubbala" /></div>
-        </div>
-        <div class="form-group"><label>Email Address</label><input type="email" placeholder="you@email.com" /></div>
-        <div class="form-group"><label>Phone / WhatsApp</label><input type="tel" placeholder="+256 700 000 000" /></div>
-        <div class="form-group">
-          <label>What are you interested in?</label>
-          <select>
-            <option value="">-- Select a service --</option>
-            <option>Website Development</option>
-            <option>Mobile App Development</option>
-            <option>Web Application</option>
-            <option>ICT Training / Course Enrollment</option>
-            <option>Graphic Design Services</option>
-            <option>Graphic Design Training</option>
-            <option>Other</option>
-          </select>
-        </div>
-        <div class="form-group"><label>Message</label><textarea placeholder="Tell us about your project, course interest, or question..."></textarea></div>
-        <button class="btn-submit" onclick="handleSubmit(event)"><i class="fas fa-paper-plane"></i> Send Message</button>
-        <p id="form-success" style="display:none;color:#10b981;text-align:center;margin-top:14px;font-weight:600;">✓ Message sent! We'll get back to you shortly.</p>
+        <form id="contactForm" action="/api/contact" method="POST" novalidate>
+          <div class="form-row">
+            <div class="form-group"><label>First Name</label><input type="text" name="firstName" id="firstName" placeholder="e.g. Phillip" required /></div>
+            <div class="form-group"><label>Last Name</label><input type="text" name="lastName" id="lastName" placeholder="e.g. Mubbala" required /></div>
+          </div>
+          <div class="form-group"><label>Email Address</label><input type="email" name="email" id="email" placeholder="you@email.com" required /></div>
+          <div class="form-group"><label>Phone / WhatsApp</label><input type="tel" name="phone" id="phone" placeholder="+256 705750506" /></div>
+          <div class="form-group">
+            <label>What are you interested in?</label>
+            <select name="service" id="service">
+              <option value="">-- Select a service --</option>
+              <option>Website Development</option>
+              <option>Mobile App Development</option>
+              <option>Web Application</option>
+              <option>ICT Training / Course Enrollment</option>
+              <option>Graphic Design Services</option>
+              <option>Graphic Design Training</option>
+              <option>Other</option>
+            </select>
+          </div>
+          <div class="form-group"><label>Message</label><textarea name="message" id="message" placeholder="Tell us about your project, course interest, or question..." required></textarea></div>
+          <button class="btn-submit" type="submit"><i class="fas fa-paper-plane"></i> Send Message</button>
+          <p id="form-success" style="display:none;color:#10b981;text-align:center;margin-top:14px;font-weight:600;"></p>
+        </form>
       </div>
     </div>
   </section>
@@ -1642,30 +1525,120 @@
         <h4>Company</h4>
         <ul>
           <li><a href="#" onclick="showPage('about')">About Us</a></li>
-          <li><a href="#" onclick="showPage('portfolio')">Portfolio</a></li>
           <li><a href="#" onclick="showPage('contact')">Contact</a></li>
           <li><a href="#">Privacy Policy</a></li>
         </ul>
       </div>
     </div>
     <div class="footer-bottom">
-      <p>© 2025 <span>Mwanaweika Tech Solutions</span>. All rights reserved. Made with ❤️ in Uganda.</p>
+      <p>© 2025 <span>Mwanaweika Tech Solutions</span>. All rights reserved.</p>
       <p style="font-size:0.8rem;">+256 705750506| +256 783354352 · mwanaweikatechsolutions@gmail.com</p>
     </div>
   </footer>
 </div>
 
 <script>
+  function getFallbackText(img) {
+    const dataFallback = img.getAttribute('data-fallback-text');
+    if (dataFallback) return dataFallback;
+    const alt = (img.getAttribute('alt') || '').trim();
+    if (!alt) return 'IMG';
+    const words = alt.split(/\s+/).filter(Boolean);
+    if (words.length === 1) return words[0].slice(0, 2).toUpperCase();
+    return words.slice(0, 2).map(word => word[0]).join('').toUpperCase();
+  }
+
+  function showImageFallback(img) {
+    if (!img || img.dataset.fallbackShown === 'true') return;
+    img.dataset.fallbackShown = 'true';
+    img.style.display = 'none';
+    const parent = img.parentElement;
+    if (!parent) return;
+    let fallback = parent.querySelector('.img-fallback');
+    if (!fallback) {
+      fallback = document.createElement('div');
+      fallback.className = 'img-fallback';
+      parent.appendChild(fallback);
+    }
+    fallback.textContent = getFallbackText(img);
+    fallback.style.display = 'flex';
+  }
+
+  function getPageFromHash() {
+    const hash = (location.hash || '').replace('#', '').trim().toLowerCase();
+    if (hash && document.getElementById('page-' + hash)) return hash;
+    return 'home';
+  }
+
+  function setActiveNav(page) {
+    document.querySelectorAll('.nav-links a, .mobile-menu a, .footer-col a').forEach(link => {
+      const linkPage = link.getAttribute('data-page');
+      link.classList.toggle('active', linkPage === page);
+    });
+    document.querySelectorAll('[id^="nav-"]').forEach(el => {
+      el.classList.toggle('active', el.id === 'nav-' + page);
+    });
+  }
+
+  function handleNavLinkClick(event) {
+    const link = event.target.closest('a');
+    if (!link) return;
+    const onclick = link.getAttribute('onclick') || '';
+    const match = onclick.match(/showPage\('([^']+)'/);
+    if (!match) return;
+    event.preventDefault();
+    event.stopPropagation();
+    showPage(match[1], true);
+  }
+
+  function bindNavLinks() {
+    document.querySelectorAll('a[onclick*="showPage("]').forEach(link => {
+      const match = link.getAttribute('onclick')?.match(/showPage\('([^']+)'/);
+      if (!match || !match[1]) return;
+      const page = match[1];
+      link.setAttribute('data-page', page);
+      link.setAttribute('href', '#' + page);
+      link.onclick = null;
+      link.addEventListener('click', event => {
+        event.preventDefault();
+        event.stopPropagation();
+        if (link.closest('.mobile-menu')) closeMobile();
+        showPage(page, true);
+      });
+    });
+  }
+
   // PAGE NAVIGATION
-  function showPage(page) {
+  function showPage(page, updateHistory = true) {
     document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-    document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active'));
-    document.getElementById('page-' + page).classList.add('active');
-    const navEl = document.getElementById('nav-' + page);
-    if (navEl) navEl.classList.add('active');
+    const targetPage = document.getElementById('page-' + page);
+    if (targetPage) {
+      targetPage.classList.add('active');
+    }
+    setActiveNav(page);
+    if (updateHistory) {
+      const hash = '#' + page;
+      if (location.hash !== hash) history.pushState({ page }, '', hash);
+    }
     window.scrollTo({ top: 0, behavior: 'smooth' });
     observeElements();
   }
+
+  window.addEventListener('popstate', () => {
+    showPage(getPageFromHash(), false);
+  });
+
+  document.addEventListener('DOMContentLoaded', () => {
+    bindNavLinks();
+    document.querySelectorAll('img').forEach(img => {
+      img.onerror = () => showImageFallback(img);
+    });
+    const form = document.getElementById('contactForm');
+    if (form) {
+      form.addEventListener('submit', handleSubmit);
+    }
+    showPage(getPageFromHash(), false);
+  });
 
   function toggleMobile() {
     document.getElementById('mobileMenu').classList.toggle('open');
@@ -1674,11 +1647,82 @@
     document.getElementById('mobileMenu').classList.remove('open');
   }
 
-  // FORM
-  function handleSubmit(e) {
+  function showFormStatus(message, isError = false) {
+    const status = document.getElementById('form-success');
+    if (!status) return;
+    status.textContent = message;
+    status.style.display = 'block';
+    status.style.color = isError ? '#dc2626' : '#10b981';
+  }
+
+  function getContactApiUrl() {
+    const isLocalhost = ['localhost', '127.0.0.1'].includes(window.location.hostname);
+    if (isLocalhost && window.location.port && window.location.port !== '3000') {
+      return 'http://localhost:3000/api/contact';
+    }
+    return '/api/contact';
+  }
+
+  async function handleSubmit(e) {
     e.preventDefault();
-    document.getElementById('form-success').style.display = 'block';
-    setTimeout(() => { document.getElementById('form-success').style.display = 'none'; }, 4000);
+    const form = e.target;
+    if (!form) return;
+
+    if (!form.checkValidity()) {
+      form.reportValidity();
+      return;
+    }
+
+    const submitButton = form.querySelector('button[type="submit"]');
+    const originalText = submitButton ? submitButton.innerHTML : '';
+
+    if (submitButton) {
+      submitButton.disabled = true;
+      submitButton.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
+    }
+
+    showFormStatus('Sending your message...', false);
+
+    const formData = new FormData(form);
+    const firstName = (formData.get('firstName') || '').toString().trim();
+    const lastName = (formData.get('lastName') || '').toString().trim();
+    const email = (formData.get('email') || '').toString().trim();
+    const phone = (formData.get('phone') || '').toString().trim();
+    const subject = (formData.get('service') || '').toString().trim();
+    const message = (formData.get('message') || '').toString().trim();
+    const payload = {
+      name: `${firstName} ${lastName}`.trim(),
+      firstName,
+      lastName,
+      email,
+      phone,
+      subject,
+      message,
+    };
+
+    try {
+      const response = await fetch(getContactApiUrl(), {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload),
+      });
+
+      const data = await response.json().catch(() => ({}));
+
+      if (!response.ok) {
+        throw new Error(data.error || 'Unable to send your message right now.');
+      }
+
+      showFormStatus(data.message || 'Thanks! Your message was received.');
+      form.reset();
+    } catch (error) {
+      showFormStatus(error.message || 'Something went wrong. Please try again later.', true);
+    } finally {
+      if (submitButton) {
+        submitButton.disabled = false;
+        submitButton.innerHTML = originalText;
+      }
+    }
   }
 
   // SCROLL ANIMATIONS
